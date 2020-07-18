@@ -2,24 +2,24 @@ const orm = require("../../db")
 const  Sequelize  = require("sequelize")
 const Product = require("../product")
 
-const Cart = orm.define("shoppingcart", {
+const Cart = orm.define("shoppingcarts", {
     id: {
         type: Sequelize.NUMBER,
         primaryKey: true,
         autoIncrement: true
     },
     productid: {
-        type: Sequelize.STRING,
+        type: Sequelize.NUMBER,
         allowNull: false
     },
     userid: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.STRING,
         allowNull: false
     }
 }, {
     timestamps: false,
-    tableName: "shoppingcart",
-    freezeTableName: true
+    /* TableName: "shoppingcart",
+    freezeTableName: true */
 })
 
 module.exports = Cart

@@ -12,7 +12,7 @@ router.post("/", async(req, res)=> {
 
 router.get("/:userid", async (req, res) => {
      const response = await orm.query(`SELECT id, name, description, brand, imageurl, category, price as unitary_price, COUNT(*) As quantity, COUNT(*) * price as total
-                                      FROM shoppingcart JOIN "products" ON shoppingcart.productid = "products".id
+                                      FROM shoppingcarts JOIN "products" ON shoppingcarts.productid = "products".id
                                       WHERE userid = ?
                                       GROUP BY id
                                       `, {
@@ -53,13 +53,13 @@ router.delete("/:userid/:id", async (req, res)=>{
 //         group: [ "name", "description", "brand", "imageurl",  "category", "price", "id"],
 //         include: [{
 //             model: Cart,
-//             as: "shoppingcarts",
+//             as: "shoppingcartss",
 //             through: { 
 //                 attributes: [] 
 //             }
 //         }],
 //         where: {
-//             '$shoppingcarts.userid$': req.params.userId
+//             '$shoppingcartss.userid$': req.params.userId
 //         }
 //     })
 

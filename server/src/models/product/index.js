@@ -2,6 +2,7 @@ const orm = require("../../db")
 const Sequelize = require("sequelize")
 const v = require("validator")
 const review = require("../review")
+const Cart = require("../cart")
 
 const product = orm.define ( "products", 
     {
@@ -43,4 +44,7 @@ product.hasMany(review,{
   foreignKey : "productid"
 })
 
+product.hasMany(Cart,{
+  foreignKey : "productid"
+})
 module.exports = product

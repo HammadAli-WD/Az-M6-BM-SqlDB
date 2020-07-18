@@ -8,7 +8,7 @@ class HomePage extends Component {
    }
 
    addToCard = async () => {
-    const resp = await fetch("http://localhost:3003/cart", {
+    const resp = await fetch(`http://localhost:3003/cart/1`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -22,7 +22,8 @@ class HomePage extends Component {
     })
     if (resp.ok)
         this.props.onProductAddedToCart(this.props.productid)
-    else 
+        
+        else 
         alert("something went wrong!!")
 }
 
