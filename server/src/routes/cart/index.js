@@ -12,7 +12,7 @@ router.post("/", async(req, res)=> {
 
 router.get("/:userid", async (req, res) => {
      const response = await orm.query(`SELECT id, name, description, brand, imageurl, category, price as unitary_price, COUNT(*) As quantity, COUNT(*) * price as total
-                                      FROM shoppingcarts JOIN "products" ON shoppingcarts.productid = "products".id
+                                      FROM cart JOIN "products" ON cart.productid = "products".id
                                       WHERE userid = ?
                                       GROUP BY id
                                       `, {
@@ -24,14 +24,14 @@ router.get("/:userid", async (req, res) => {
     res.send(response)              
 })
 
-router.delete("/:userid/:id", async (req, res)=>{
+router.delete("/:userid/:productid", async (req, res)=>{
 
     const response = await Cart.destroy({
         where: {
             [Sequelize.Op.and]: [{
                 userid: req.params.userid
             },{
-                productid: req.params.id
+                productid: req.params.productid
             }]
         },
         limit: 1
@@ -53,13 +53,13 @@ router.delete("/:userid/:id", async (req, res)=>{
 //         group: [ "name", "description", "brand", "imageurl",  "category", "price", "id"],
 //         include: [{
 //             model: Cart,
-//             as: "shoppingcartss",
+//             as: "carts",
 //             through: { 
 //                 attributes: [] 
 //             }
 //         }],
 //         where: {
-//             '$shoppingcartss.userid$': req.params.userId
+//             '$carts.userid$': req.params.userId
 //         }
 //     })
 

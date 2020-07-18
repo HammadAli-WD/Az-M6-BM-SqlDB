@@ -53,7 +53,7 @@ class CartItem extends Component {
                         {brand} 
                         <Button variant="danger" className="ml-5" onClick={this.removeItem}><CartDash /></Button></h5>
                     <p>
-                        <Badge pill variant={this.categoryToColor(category)} className="mr-3">
+                        <Badge /* pill variant={this.categoryToColor(category)} */ className="mr-3">
                             {category}
                         </Badge>
                         <Badge pill variant={this.priceToColor(unitary_price)}>
